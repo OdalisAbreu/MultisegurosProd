@@ -41,7 +41,7 @@ if ($_POST) {
 		// para verificar seguro
 		//$xID 	= "WEB-".$_SESSION['user_id'].date('Ymdhis');
 		$url =
-			"https://multiseguros.com.do/ws_dev/Seguros/GET_Poliza.php" .
+			"https://multiseguros.com.do/ws6_3_8/Seguros/GET_Poliza.php" .
 			"?xID=WEB-" .
 			$_SESSION['user_id'] .
 			date('Ymdhis') .
