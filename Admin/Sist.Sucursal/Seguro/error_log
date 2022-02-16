@@ -663,3 +663,4 @@
 [03-Feb-2022 13:41:48 America/Santo_Domingo] PHP Warning:  addslashes() expects parameter 1 to be string, array given in /home/multiseguroscom/public_html/Seg_V2/incluidos/conexion_inc.php on line 67
 [04-Feb-2022 19:37:58 America/Santo_Domingo] PHP Warning:  addslashes() expects parameter 1 to be string, array given in /home/multiseguroscom/public_html/Seg_V2/incluidos/conexion_inc.php on line 67
 [09-Feb-2022 19:04:42 America/Santo_Domingo] PHP Warning:  addslashes() expects parameter 1 to be string, array given in /home/multiseguroscom/public_html/Seg_V2/incluidos/conexion_inc.php on line 67
+[15-Feb-2022 13:20:02 America/Santo_Domingo] PHP Warning:  addslashes() expects parameter 1 to be string, array given in /home/multiseguroscom/public_html/Seg_V2/incluidos/conexion_inc.php on line 67
