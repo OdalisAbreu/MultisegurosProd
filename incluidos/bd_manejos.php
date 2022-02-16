@@ -38,5 +38,26 @@
 		@mysql_query($consulta);
 		}
 	}
+
+	function EditarFormModel($tabla){
+	$tipos = '';
+	foreach($_POST as $nombre_campo => $valor)	{
+		//Concatena los tipos 
+		$campo = substr($nombre_campo, 0, 4);
+		 if($campo == 'tipo'){
+
+				 $tipos = strval($valor + 100).'-'.$tipos;
+		}else{
+			$consulta = "UPDATE $tabla
+			SET $nombre_campo ='$valor' 
+			where id = '".$_POST['id']."'";
+			@mysql_query($consulta);
+		}
+	}
+		$consulta = "UPDATE $tabla
+		SET tipo ='$tipos' 
+		where id = '".$_POST['id']."'";
+		@mysql_query($consulta);
+	}
 	
 ?>

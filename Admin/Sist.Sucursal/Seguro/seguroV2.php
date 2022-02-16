@@ -6,6 +6,7 @@ ini_set('display_errors', 0);
 include "../../../incluidos/conexion_inc.php";
 include "../../../incluidos/fechas.func.php";
 include "../../../incluidos/nombres.func.php";
+include('../../../controller/VehiculoController.php');
 
 Conectarse();
 //include("../../inc/loteprint.func.php");
@@ -40,7 +41,7 @@ if ($_POST) {
 		// para verificar seguro
 		//$xID 	= "WEB-".$_SESSION['user_id'].date('Ymdhis');
 		$url =
-			"https://multiseguros.com.do/ws6_3_8/Seguros/GET_Poliza.php" .
+			"https://multiseguros.com.do/ws_dev/Seguros/GET_Poliza.php" .
 			"?xID=WEB-" .
 			$_SESSION['user_id'] .
 			date('Ymdhis') .
@@ -640,9 +641,8 @@ if ($_POST) {
 												<select name="tipo" id="tipo" style="display:compact" class="form-control">
 													<option value="">- Seleccionar - </option>
 													<?php
-													$rescat2 = mysql_query(
-														"SELECT id, nombre, veh_tipo from seguro_tarifas order by nombre ASC"
-													);
+													$tipoVehiculo = new vehiculoController;
+													$rescat2 = $tipoVehiculo->getTypes();
 													while ($cat2 = mysql_fetch_array($rescat2)) {
 														$c2 = $cat2['nombre'];
 														$c_id2 = $cat2['veh_tipo'];
@@ -686,9 +686,9 @@ if ($_POST) {
 															$("#HR3").css("display", "none");
 														}
 														if (id == '2') { //Automovil
-															
+
 															$("#tabla101").css("display", "block"); // casa del conductor
-														
+
 															$("#tabla102").css("display", "block"); // aumento de fianza
 															$("#tabla103").css("display", "none"); // casa del conductor motocicleta
 															$("#HR1").css("display", "block");
@@ -893,8 +893,17 @@ if ($_POST) {
 
 														function() {
 															var id = $(this).val();
-															CargarAjax2('Admin/Sist.Sucursal/Seguro/Vehiculos/AJAX/Modelos.php?marca_id=' + id + '', '', 'GET', 'modelo');
+															var model = document.getElementById("tipo").value;
+															CargarAjax2('Admin/Sist.Sucursal/Seguro/Vehiculos/AJAX/Modelos.php?marca_id=' + id + '&tipo=' + model + '', '', 'GET', 'modelo');
+															console.log(model)
 														});
+														$("#tipo").change(
+
+															function() {
+																var id = document.getElementById("marca").value;
+																var model = document.getElementById("tipo").value;
+																CargarAjax2('Admin/Sist.Sucursal/Seguro/Vehiculos/AJAX/Modelos.php?marca_id=' + id + '&tipo=' + model + '', '', 'GET', 'modelo');
+															});
 												</script>
 											</div>
 											<p class="error help-block" id="errormarca" style="display:none"><span class="label label-important">Por favor seleccione marca</span></p>
@@ -910,8 +919,10 @@ if ($_POST) {
 												<script>
 												CargarAjax2('Admin/Sist.Sucursal/Seguro/Vehiculos/AJAX/Modelos.php?marca_id=" .
 														$v['veh_marca'] .
+														"&tipo=".$cat2['id'].
 														"&selec=" .
 														$v['modelo'] .
+														
 														"','','GET','modelo');
 												
 												</script>
@@ -944,8 +955,8 @@ if ($_POST) {
 													$Total = $yaerAct - $year; // 2016 - 100 = 1916
 													for ($i = $yaerAct; $i >= $Total; $i--) { ?>
 														<option value="<?= $i ?>" <?php if (
-																							$v['veh_year'] == '$i'
-																						) { ?> selected="selected" <?php } ?>><?= $i ?></option>
+																						$v['veh_year'] == '$i'
+																					) { ?> selected="selected" <?php } ?>><?= $i ?></option>
 													<?php }
 													?>
 
@@ -1271,14 +1282,14 @@ if ($_POST) {
 												<div class="row">
 													<div class="col-md-9"><b><?= $nominadep['nombre'] ?></b> </div>
 													<div class="col-md-2 3-meses" id="M1<?= $nominadep['id'] ?>" style="display:none"> <?= FormatDinero(
-													$nominadep['3meses']
-												) ?> </div>
+																																			$nominadep['3meses']
+																																		) ?> </div>
 													<div class="col-md-2 6-meses" id="M2<?= $nominadep['id'] ?>" style="display:none"> <?= FormatDinero(
-													$nominadep['6meses']
-												) ?> </div>
+																																			$nominadep['6meses']
+																																		) ?> </div>
 													<div class="col-md-2 12-meses" id="M3<?= $nominadep['id'] ?>"> <?= FormatDinero(
-																															$nominadep['12meses']
-																														) ?> </div>
+																														$nominadep['12meses']
+																													) ?> </div>
 													<div class="col-md-1"> <input name="servicios[]" type="checkbox" value="<?= $nominadep['id'] ?>" style="width: 19px; height: 16px;" /></div>
 												</div>
 											</div>

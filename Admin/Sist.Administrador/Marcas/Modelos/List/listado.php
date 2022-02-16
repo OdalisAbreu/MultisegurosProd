@@ -2,6 +2,7 @@
 	session_start();
 	ini_set('display_errors',1);
 	include("../../../../../incluidos/conexion_inc.php");
+	include('../../../../../controller/VehiculoController.php');
 	Conectarse();
 	include('../../../../../incluidos/bd_manejos.php');
 	include('../../../../../incluidos/nombres.func.php');
@@ -9,6 +10,7 @@
 	// DETERMINAR SI ES GET O POST
 	 $acc1 = $_POST['accion'].$_GET['action'];
 	
+
 	// DESACTIVAR
 	if($_GET['action']=='desactivar'){
 		$query=mysql_query("UPDATE seguro_modelos SET activo ='no' WHERE id='".$_GET['id']."' LIMIT 1");
@@ -35,7 +37,7 @@
 	
 	// EDITAR
 	if($acc1=='Editar'){
-		EditarForm('seguro_modelos');
+		EditarFormModel('seguro_modelos');
 		echo'<script>
 		CargarAjax2("Admin/Sist.Administrador/Marcas/Modelos/List/listado.php?idmarca='.$_GET["idmarca"].'","","GET","cargaajax");
 		$("#myModal").modal("hide"); $("#actul").fadeIn(0); $("#actul").fadeOut(10000);</script> ';
