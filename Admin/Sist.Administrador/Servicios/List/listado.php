@@ -1,11 +1,12 @@
 <?
 	session_start();
 	ini_set('display_errors',1);
-	include("../../../../../incluidos/conexion_inc.php");
-
+	include('../../../../incluidos/conexion_inc.php');
+	include('../../../../controller/VehiculoController.php');
+	
 	Conectarse();
-	include('../../../../../incluidos/bd_manejos.php');
-	include('../../../../../incluidos/nombres.func.php');
+	include('../../../../incluidos/bd_manejos.php');
+	include('../../../../incluidos/fechas.func.php')
 
 	// DETERMINAR SI ES GET O POST
 	 $acc1 = $_POST['accion'].$_GET['action'];
