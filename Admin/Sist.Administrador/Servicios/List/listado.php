@@ -1,10 +1,10 @@
 <?
 	session_start();
 	ini_set('display_errors',1);
-	
+
 	include("../../../../incluidos/conexion_inc.php");
 	include('../../../../incluidos/bd_manejos.php');
-	include('../../../../incluidos/nombres.func.php');
+	include('../../../../incluidos/fechas.func.php');
 	Conectarse();
 
 	// DETERMINAR SI ES GET O POST
