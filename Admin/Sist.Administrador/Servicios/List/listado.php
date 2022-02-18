@@ -2,7 +2,7 @@
 	session_start();
 	ini_set('display_errors',1);
 	include("../../../../../incluidos/conexion_inc.php");
-	include('../../../../../controller/VehiculoController.php');
+
 	Conectarse();
 	include('../../../../../incluidos/bd_manejos.php');
 	include('../../../../../incluidos/nombres.func.php');
