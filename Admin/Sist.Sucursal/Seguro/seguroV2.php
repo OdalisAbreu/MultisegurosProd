@@ -451,26 +451,26 @@ if ($_POST) {
 
 	function EnviarSeguro() {
 		// validar FECHAS
+		const fecha = new Date();
 		var HayError = false;
 		var fecha1 = $('#fecha_inicio').val();
-		//alert(fecha1+"-");
-		var fechaD = fecha1.split("-");
-		var fechaF = parseInt(fechaD[0] + "" + fechaD[1] + "" + fechaD[2]);
-		var fechaH = parseInt(<?= date("Ymd") ?>);
+		var fechaD = fecha1.split("/");
+		var fechaF = fechaD[2] + "-" + fechaD[1] + "-" + (parseInt(fechaD[0]) +1) ;
+		var fechaH = fecha.getFullYear() + "-" + (fecha.getMonth() +1) + "-" + fecha.getDate();
+		var fechaValida =  fecha.getDate()+ "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear();
+		var fechaActtual = new Date(fechaH);
+		var fechaPoliza = new Date(fechaF);
 
-		//alert(fechaF+"-"+fechaH);
-
-		if (fechaF <= fechaH) {
+		if (fechaActtual.getTime()  > fechaPoliza.getTime()) {
 			$('#error_fecha_ini').fadeIn('9');
-			HayError2 = true;
+			HayError = true;
 		} else {
 			$('#error_fecha_ini').fadeOut('3');
 		}
 
-
 		// si envia error
 		if (HayError == true) {
-			//alert('Por Favor! \n Asegurate de Completar todos los campos abligatorios');
+			alert('Por Favor! \n Asegúrate que la fecha de emisión no sea antes del: '+ fechaValida);
 		} else {
 			if (confirm('Realmente deseas comprar este seguro?')) {
 				CargarAjax2_form('Admin/Sist.Sucursal/Seguro/seguroV2.php', 'form_edit_prof', 'formprinc');
