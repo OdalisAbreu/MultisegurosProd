@@ -470,7 +470,7 @@ if ($_POST) {
 
 		// si envia error
 		if (HayError == true) {
-			alert('Por Favor! \n Asegúrate que la fecha de emisión no sea antes del: '+ fechaValida);
+			alert('Por Favor! \n Asegúrate que la fecha de emisión no anterior a la fecha actual');
 		} else {
 			if (confirm('Realmente deseas comprar este seguro?')) {
 				CargarAjax2_form('Admin/Sist.Sucursal/Seguro/seguroV2.php', 'form_edit_prof', 'formprinc');
