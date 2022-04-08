@@ -68,6 +68,15 @@ if($_SESSION["funcion_id"] =='2' && $_SESSION["tipo_conex"]=='http-request'){ ?>
     
     </ul>
 </li>
+<li>
+    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Revisiones<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+      <li>
+        <a href="#" onClick="CargarAjax2('Admin/Sist.Distribuidor/Revisiones/Ticket/listado.php','','GET','cargaajax');">Modificar Poliza</a>
+      </li>
+    </ul>
+    <!-- /.nav-second-level -->
+  </li>
 
 
 
