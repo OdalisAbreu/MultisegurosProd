@@ -85,7 +85,7 @@
                                                                 <input  name="tipo'.$eq['veh_tipo'].'" type="checkbox"  value="'.$eq['veh_tipo'].'" ';
                                                                           
                                                                 if( $_GET['accion'] == 'registrar'){
-                                                                 //   echo' checked=""';
+                                                                    echo' checked=""';
                                                                }else{
                                                                    $value = intval($eq['veh_tipo']) + 100;
                                                                         if(substr_count($tipos,"".$value."-")>0){
