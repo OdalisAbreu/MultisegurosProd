@@ -98,7 +98,7 @@ $info = $_GET['info'];
 	
 if($tipo == 'cedula'){
 	
-	$rs2 = mysql_query("SELECT * FROM seguro_clientes WHERE asegurado_cedula LIKE '%".$info."%' ");
+	$rs2 = mysql_query("SELECT * FROM seguro_clientes WHERE asegurado_cedula = '".$info."' ");
 	while($numU = mysql_fetch_array($rs2)){
 		$ced .= $numU['id'].",";
 	}
@@ -112,7 +112,7 @@ if($tipo == 'cedula'){
 
 if($tipo == 'nombre'){
 
-	$rs2 = mysql_query("SELECT * FROM seguro_clientes WHERE asegurado_nombres LIKE '%".$info."%' ");
+	$rs2 = mysql_query("SELECT * FROM seguro_clientes WHERE asegurado_nombres = '".$info."' ");
 	while($numU = mysql_fetch_array($rs2)){
 		$ced .= $numU['id'].",";
 	}
@@ -126,7 +126,7 @@ if($tipo == 'nombre'){
 
 if($tipo == 'chassis'){
 	
-	$rs2 = mysql_query("SELECT * FROM seguro_vehiculo WHERE veh_chassis LIKE '%".$info."%' ");
+	$rs2 = mysql_query("SELECT * FROM seguro_vehiculo WHERE veh_chassis = '".$info."' ");
 	while($numU = mysql_fetch_array($rs2)){
 		$ced .= $numU['id'].",";
 	}
@@ -140,7 +140,7 @@ if($tipo == 'chassis'){
 
 if($tipo == 'matricula'){
 
-	$rs2 = mysql_query("SELECT * FROM seguro_vehiculo WHERE veh_matricula LIKE '%".$info."%' ");
+	$rs2 = mysql_query("SELECT * FROM seguro_vehiculo WHERE veh_matricula = '".$info."' ");
 	while($numU = mysql_fetch_array($rs2)){
 		$ced .= $numU['id'].",";
 	}
